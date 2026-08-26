@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Starfield from '../components/Starfield.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import InterestConstellation from '../components/InterestConstellation.astro';
+import AtlasMap from '../components/AtlasMap.astro';
+import JourneyTimeline from '../components/JourneyTimeline.astro';
+import Icon from '../components/Icon.astro';
+import { projects } from '../data/site';
+---
+
+<BaseLayout>
+  <section class="hero" aria-labelledby="hero-title">
+    <Starfield />
+    <div class="hero-content">
+      <p class="eyebrow">SYSTEMS / MEDIA / HORIZONS</p>
+      <h1 id="hero-title">
+        写系统，
+        <span class="accent">也走世界。</span>
+      </h1>
+      <p class="hero-subtitle">Building systems, collecting horizons. Between low-level signals and faraway light, I make tools, study networks, and keep field notes.</p>
+      <div class="hero-actions">
+        <a class="button" href="#projects">
+          Enter the work
+          <Icon name="arrow" size={18} />
+        </a>
+        <a class="button button--quiet" href="#atlas">
+          <Icon name="compass" size={18} />
+          Open the atlas
+        </a>
+      </div>
+      <p class="hero-coordinate" aria-label="Abstract site coordinates">
+        31° SYSTEMS / 121° STORIES<br />
+        DEPTH 0042 M · SIGNAL CLEAR<br />
+        COORDINATES ARE POETIC
+      </p>
+    </div>
+    <span class="hero-depth" aria-hidden="true">SCROLL TO DESCEND</span>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">01 / SELECTED PROJECTS</p>
+        <h2 class="section-title" id="projects-title">Things built<br />below the surface.</h2>
+      </div>
+      <p class="section-intro">Three ongoing explorations in infrastructure, native experiences, and human-sized automation. Private work is described only at a high level.</p>
+    </div>
+    <div class="projects-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <section class="section constellation-section" aria-labelledby="interests-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">02 / INTEREST CONSTELLATION</p>
+        <h2 class="section-title" id="interests-title">Different lights,<br />one navigation.</h2>
+      </div>
+      <p class="section-intro">The same curiosity moves between protocols and places: how invisible structure shapes what people can feel and do.</p>
+    </div>
+    <InterestConstellation />
+  </section>
+
+  <section class="section" id="atlas" aria-labelledby="atlas-section-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">03 / WHERE I'VE BEEN</p>
+        <h2 class="section-title" id="atlas-section-title">A personal atlas<br />without coordinates.</h2>
+      </div>
+      <p class="section-intro">Not a live map and not a travel log. Only broad impressions — coastlines, old streets, rail windows, and the ways a horizon changes a question.</p>
+    </div>
+    <AtlasMap />
+  </section>
+
+  <section class="section" aria-labelledby="journey-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">04 / SYSTEMS × JOURNEY</p>
+        <h2 class="section-title" id="journey-title">A timeline of<br />signals and distance.</h2>
+      </div>
+      <p class="section-intro">A non-literal route through the ideas that connect technical practice with a wider view of the world.</p>
+    </div>
+    <JourneyTimeline />
+  </section>
+
+  <section class="section" aria-labelledby="notes-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">05 / NOTES FROM THE DEEP</p>
+        <h2 class="section-title" id="notes-title">Old signals,<br />kept readable.</h2>
+      </div>
+      <p class="section-intro">Two early technical notes, preserved as historical archives. Their original wording remains intact, including errors and outdated advice.</p>
+    </div>
+    <div class="notes-preview">
+      <a class="note-row" href="/notes/git-commands/">
+        <span class="note-meta">2020.01.24 / ARCHIVE</span>
+        <div>
+          <h3>Git 的一些常用命令</h3>
+          <p>关于仓库、分支、rebase 与撤销操作的早期笔记。</p>
+        </div>
+        <Icon name="arrow" size={21} />
+      </a>
+      <a class="note-row" href="/notes/qr-code/">
+        <span class="note-meta">2019.01.15 / ARCHIVE</span>
+        <div>
+          <h3>深度探索二维码及其应用</h3>
+          <p>从编码、纠错到艺术二维码的一次长篇探索。</p>
+        </div>
+        <Icon name="arrow" size={21} />
+      </a>
+    </div>
+  </section>
+</BaseLayout>

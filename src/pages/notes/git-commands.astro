@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { Content } from '../../content/notes/git-commands.md';
+---
+
+<BaseLayout
+  title="Git 的一些常用命令 — Yun Lambert"
+  description="2020 年 Git 命令笔记历史归档。命令可能过时，请勿直接复制。"
+  type="article"
+>
+  <header class="article-header">
+    <p class="eyebrow">ARCHIVE / SHARE / 2020</p>
+    <h1>Git 的一些常用命令</h1>
+    <p class="article-meta"><span>2020.01.24</span><span>Historical archive</span><span>Original text preserved</span></p>
+  </header>
+  <article class="article-shell">
+    <a class="article-back" href="/notes/"><Icon name="arrow" size={17} /> Back to all notes</a>
+    <aside class="archive-notice" aria-label="Important archive warning">
+      <Icon name="spark" size={22} />
+      <div>
+        <strong>历史归档，命令可能过时，请勿直接复制</strong>
+        <p>本文保留 2020 年原始正文，其中含有拼写错误、破坏性操作或已不推荐的 Git 用法。执行任何命令前，请核对当前官方文档、理解影响并备份工作。</p>
+      </div>
+    </aside>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

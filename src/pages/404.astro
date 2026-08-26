@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout title="404 — Signal lost" description="The requested coordinate could not be found." noFooter>
+  <section class="not-found">
+    <div>
+      <strong>404</strong>
+      <h1>Signal lost below the surface.</h1>
+      <p>This coordinate is empty, but the main route is still clear.</p>
+      <a class="button" href="/"><Icon name="arrow" size={18} /> Return home</a>
+    </div>
+  </section>
+</BaseLayout>

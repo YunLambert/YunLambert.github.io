@@ -1,0 +1,63 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  project: {
+    id: string;
+    name: string;
+    eyebrow: string;
+    summary: string;
+    tags: readonly string[];
+    href?: string;
+    linkLabel?: string;
+    motif: 'orbit' | 'wave' | 'nodes';
+  };
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-card">
+  <div class:list={['project-visual', `project-visual--${project.motif}`]} aria-hidden="true">
+    {project.motif === 'orbit' && (
+      <svg viewBox="0 0 320 190">
+        <ellipse cx="160" cy="95" rx="112" ry="38" />
+        <ellipse cx="160" cy="95" rx="82" ry="82" transform="rotate(-35 160 95)" />
+        <circle cx="160" cy="95" r="20" />
+        <circle class="pulse" cx="254" cy="74" r="5" />
+      </svg>
+    )}
+    {project.motif === 'wave' && (
+      <svg viewBox="0 0 320 190">
+        <path d="M14 110c24 0 24-58 48-58s24 88 48 88 24-100 48-100 24 116 48 116 24-82 48-82 24 36 52 36" />
+        <path class="ghost" d="M14 118c30 0 31-30 59-30s34 54 63 54 31-72 60-72 34 48 62 48 27-18 48-18" />
+      </svg>
+    )}
+    {project.motif === 'nodes' && (
+      <svg viewBox="0 0 320 190">
+        <path d="m72 108 64-50 53 70 62-68M72 108l117 20M136 58l115 2" />
+        <circle cx="72" cy="108" r="13" />
+        <circle cx="136" cy="58" r="9" />
+        <circle cx="189" cy="128" r="16" />
+        <circle cx="251" cy="60" r="11" />
+      </svg>
+    )}
+    <span class="project-index">{project.id}</span>
+  </div>
+  <div class="project-body">
+    <p class="card-eyebrow">{project.eyebrow}</p>
+    <h3>{project.name}</h3>
+    <p>{project.summary}</p>
+    <ul class="tag-list" aria-label={`${project.name} technologies`}>
+      {project.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    {project.href ? (
+      <a class="card-link" href={project.href} target="_blank" rel="noreferrer">
+        {project.linkLabel}
+        <Icon name="arrow" size={18} />
+      </a>
+    ) : (
+      <span class="card-status"><i></i> PRIVATE EXPLORATION</span>
+    )}
+  </div>
+</article>

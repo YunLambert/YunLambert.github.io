@@ -1,0 +1,60 @@
+---
+import { atlasPoints } from '../data/site';
+---
+
+<div class="atlas-frame">
+  <div class="atlas-meta" aria-hidden="true">
+    <span>PERSONAL ATLAS</span>
+    <span>ABSTRACTED / NOT TO SCALE</span>
+  </div>
+  <svg class="atlas-map" viewBox="0 0 1000 560" role="img" aria-labelledby="atlas-title atlas-desc">
+    <title id="atlas-title">Where I have been — abstract personal atlas</title>
+    <desc id="atlas-desc">An intentionally imprecise globe with broad memory labels. It contains no exact travel or location data.</desc>
+    <defs>
+      <radialGradient id="atlasGlow" cx="72%" cy="38%" r="65%">
+        <stop offset="0" stop-color="#17788a" stop-opacity=".36" />
+        <stop offset="1" stop-color="#061828" stop-opacity="0" />
+      </radialGradient>
+      <clipPath id="globeClip"><ellipse cx="500" cy="280" rx="412" ry="218" /></clipPath>
+    </defs>
+    <ellipse class="atlas-ocean" cx="500" cy="280" rx="412" ry="218" />
+    <ellipse cx="500" cy="280" rx="412" ry="218" fill="url(#atlasGlow)" />
+    <g class="atlas-grid" clip-path="url(#globeClip)">
+      <path d="M42 280h916M74 198h852M74 362h852M151 122h698M151 438h698" />
+      <ellipse cx="500" cy="280" rx="310" ry="218" />
+      <ellipse cx="500" cy="280" rx="164" ry="218" />
+      <path d="M500 62v436" />
+    </g>
+    <g class="atlas-land" clip-path="url(#globeClip)">
+      <path d="M190 152c42-44 103-54 151-35l34 43-26 48 18 46-53 31-38-17-46 21-60-41 12-52-28-22Z" />
+      <path d="M341 333c32-19 77-13 90 20l-18 49-23 70-44-33-16-57Z" />
+      <path d="M478 123c40-27 79-24 117-7l44 34 91 6 62 46-28 32 23 45-54 26-29-28-52 14-35-29-51 19-42-19-9-47-54-34 35-34Z" />
+      <path d="M711 353c33-29 92-26 119 8l-17 53-62 24-53-39Z" />
+      <path d="M610 309c30-20 68-8 73 22l-22 72-45 45-31-69Z" />
+    </g>
+    <g class="atlas-route" aria-hidden="true">
+      <path d="M275 310C380 187 522 174 760 255" />
+      <path d="M405 350c86 15 174 3 283-92" />
+    </g>
+    <g class="atlas-points">
+      {atlasPoints.map((point, index) => {
+        const px = 88 + (point.x / 100) * 824;
+        const py = 62 + (point.y / 100) * 436;
+        return (
+          <g transform={`translate(${px} ${py})`}>
+            <circle class="atlas-point-ring" r="11" />
+            <circle class="atlas-point-dot" r="3.5" />
+            <text x="15" y={index % 2 === 0 ? -8 : 19}>{point.label}</text>
+          </g>
+        );
+      })}
+    </g>
+  </svg>
+  <ul class="atlas-mobile-labels" aria-label="Abstract atlas memory labels">
+    {atlasPoints.map((point) => <li>{point.label}</li>)}
+  </ul>
+  <div class="atlas-legend">
+    <p><span></span> Memory fragments, deliberately de-located</p>
+    <p>Data: <code>src/data/site.ts</code></p>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+---
+
+<BaseLayout title="Notes — Yun Lambert" description="技术笔记历史归档：二维码原理与 Git 常用命令。">
+  <header class="page-hero">
+    <p class="eyebrow">NOTES / ARCHIVE / FIELD SIGNALS</p>
+    <h1>Notes from<br />the deep.</h1>
+    <p>早期写下的技术探索，按原文归档。这里的内容不代表当前建议；阅读时请留意日期与醒目的历史说明。</p>
+  </header>
+  <section class="notes-page-list" aria-label="Archived notes">
+    <div class="archive-notice">
+      <Icon name="spark" size={21} />
+      <div>
+        <strong>历史归档</strong>
+        <p>文章保留原始正文、表述与命令，仅重新排版。涉及工具操作时，请先核对最新官方文档。</p>
+      </div>
+    </div>
+    <div class="notes-preview">
+      <a class="note-row" href="/notes/git-commands/">
+        <span class="note-meta">2020.01.24 / SHARE</span>
+        <div>
+          <h2>Git 的一些常用命令</h2>
+          <p>分支、remote、rebase、reset 与恢复场景笔记。</p>
+        </div>
+        <Icon name="arrow" size={21} />
+      </a>
+      <a class="note-row" href="/notes/qr-code/">
+        <span class="note-meta">2019.01.15 / SHARE</span>
+        <div>
+          <h2>深度探索二维码及其应用</h2>
+          <p>二维码数据编码、纠错、掩码与艺术化实现。</p>
+        </div>
+        <Icon name="arrow" size={21} />
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .note-row h2 {
+    margin: 0 0 5px;
+    font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+    font-weight: 400;
+  }
+</style>

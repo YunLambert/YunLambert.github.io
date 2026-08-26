@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+
+const pathname = Astro.url.pathname;
+const home = pathname === '/';
+---
+
+<header class:list={['site-header', { 'site-header--solid': !home }]}>
+  <a class="brand" href="/" aria-label="Yun Lambert — home">
+    <span class="brand-mark" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+    <span>YUN / LAMBERT</span>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <a href={home ? '#projects' : '/#projects'}>Projects</a>
+    <a href={home ? '#atlas' : '/#atlas'}>Atlas</a>
+    <a href="/notes/" aria-current={pathname.startsWith('/notes') ? 'page' : undefined}>Notes</a>
+    <a class="nav-github" href="https://github.com/YunLambert" rel="me noreferrer" target="_blank">
+      <Icon name="github" size={18} />
+      <span>GitHub</span>
+    </a>
+  </nav>
+</header>

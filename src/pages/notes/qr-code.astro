@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { Content } from '../../content/notes/qr-code.md';
+---
+
+<BaseLayout
+  title="深度探索二维码及其应用 — Yun Lambert"
+  description="2019 年二维码原理、纠错编码与艺术二维码实现笔记历史归档。"
+  type="article"
+>
+  <header class="article-header">
+    <p class="eyebrow">ARCHIVE / SHARE / 2019</p>
+    <h1>深度探索二维码及其应用</h1>
+    <p class="article-meta"><span>2019.01.15</span><span>Historical archive</span><span>Original text preserved</span></p>
+  </header>
+  <article class="article-shell">
+    <a class="article-back" href="/notes/"><Icon name="arrow" size={17} /> Back to all notes</a>
+    <aside class="archive-notice" aria-label="Archive notice">
+      <Icon name="spark" size={22} />
+      <div>
+        <strong>历史归档 · 原文保留</strong>
+        <p>本文写于 2019 年，外部资料、代码与工具状态可能已经变化。正文未作事实修订。</p>
+      </div>
+    </aside>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
