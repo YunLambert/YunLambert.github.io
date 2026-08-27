@@ -24,19 +24,19 @@ const ogImage = new URL(image, site.url);
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="night">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#041322" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="alternate" type="application/rss+xml" title="Yun Lambert Notes" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="小云朵想养鲸鱼の博客" href="/rss.xml" />
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
@@ -49,6 +49,15 @@ const ogImage = new URL(image, site.url);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('yun-theme');
+        const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'day' : 'night';
+        const theme = stored === 'day' || stored === 'night' ? stored : preferred;
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme === 'day' ? 'light' : 'dark';
+      })();
+    </script>
   </head>
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to content</a>

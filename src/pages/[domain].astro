@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Starfield from '../components/Starfield.astro';
+import Icon from '../components/Icon.astro';
+import { domains, domainOrder, site } from '../data/site';
+
+export function getStaticPaths() {
+  return domainOrder.map((key) => ({
+    params: { domain: key },
+    props: { domain: domains[key], slug: key }
+  }));
+}
+
+const { domain, slug } = Astro.props;
+const title = `${domain.title} — ${site.title}`;
+---
+
+<BaseLayout title={title} description={domain.intro}>
+  <section class={`domain-hero domain-hero--${slug}`} aria-labelledby="domain-title">
+    <Starfield />
+    <div class="domain-hero__inner">
+      <p class="eyebrow">{domain.eyebrow}</p>
+      <h1 id="domain-title">{domain.title}</h1>
+      <p>{domain.intro}</p>
+      <a class="button" href="/">
+        <Icon name="arrow" size={18} />
+        回到主题入口
+      </a>
+    </div>
+  </section>
+
+  <section class="section compact-section" aria-labelledby="domain-cards-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">{domain.label.toUpperCase()} / PAGE</p>
+        <h2 class="section-title" id="domain-cards-title">这个领域下，<br />先放这些。</h2>
+      </div>
+      <p class="section-intro">{domain.note}</p>
+    </div>
+    <div class="topic-grid">
+      {domain.cards.map((card) => (
+        'href' in card ? (
+          <a class="topic-card" href={card.href}>
+            <p class="card-eyebrow">{card.meta}</p>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+            <span>Open <Icon name="arrow" size={17} /></span>
+          </a>
+        ) : (
+          <article class="topic-card">
+            <p class="card-eyebrow">{card.meta}</p>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        )
+      ))}
+    </div>
+  </section>
+</BaseLayout>

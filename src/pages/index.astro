@@ -1,114 +1,90 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Starfield from '../components/Starfield.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import InterestConstellation from '../components/InterestConstellation.astro';
-import AtlasMap from '../components/AtlasMap.astro';
-import JourneyTimeline from '../components/JourneyTimeline.astro';
 import Icon from '../components/Icon.astro';
-import { projects } from '../data/site';
+import { featuredDomains, interestTags, timeline } from '../data/site';
 ---
 
 <BaseLayout>
   <section class="hero" aria-labelledby="hero-title">
     <Starfield />
+    <div class="hero-orb hero-orb--sun" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--whale" aria-hidden="true">🐋</div>
     <div class="hero-content">
-      <p class="eyebrow">SYSTEMS / MEDIA / HORIZONS</p>
-      <h1 id="hero-title">
-        写系统，
-        <span class="accent">也走世界。</span>
-      </h1>
-      <p class="hero-subtitle">Building systems, collecting horizons. Between low-level signals and faraway light, I make tools, study networks, and keep field notes.</p>
-      <div class="hero-actions">
-        <a class="button" href="#projects">
-          Enter the work
-          <Icon name="arrow" size={18} />
+      <p class="eyebrow">SUNSET DAY / DEEP SEA NIGHT</p>
+      <h1 id="hero-title">欢迎光临<br /><span>小云朵想养鲸鱼の博客</span></h1>
+      <p class="hero-subtitle">这里收集 coding、hiking、designing、photograph、vibecoding、music、travel，以及所有从深海星空里游出来的灵感。</p>
+      <ul class="tag-cloud" aria-label="Interests">
+        {interestTags.map((tag) => <li>{tag}</li>)}
+      </ul>
+      <div class="domain-actions" aria-label="Blog domains">
+        {featuredDomains.map((domain) => (
+          <a class="domain-button" href={domain.href}>
+            <span>{domain.label}</span>
+            <Icon name="arrow" size={18} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact-section" aria-labelledby="domains-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker section-index">01 / THEME PAGES</p>
+        <h2 class="section-title" id="domains-title">五个入口，<br />各有一片海。</h2>
+      </div>
+      <p class="section-intro">主页不再做长横向叙事，直接给领域按钮。每个按钮进入对应主题页，后续内容按主题继续生长。</p>
+    </div>
+    <div class="domain-grid">
+      {featuredDomains.map((domain) => (
+        <a class="domain-card" href={domain.href}>
+          <p class="card-eyebrow">{domain.eyebrow}</p>
+          <h3>{domain.title}</h3>
+          <p>{domain.intro}</p>
+          <span>{domain.label} <Icon name="arrow" size={17} /></span>
         </a>
-        <a class="button button--quiet" href="#atlas">
-          <Icon name="compass" size={18} />
-          Open the atlas
-        </a>
-      </div>
-      <p class="hero-coordinate" aria-label="Abstract site coordinates">
-        31° SYSTEMS / 121° STORIES<br />
-        DEPTH 0042 M · SIGNAL CLEAR<br />
-        COORDINATES ARE POETIC
-      </p>
-    </div>
-    <span class="hero-depth" aria-hidden="true">SCROLL TO DESCEND</span>
-  </section>
-
-  <section class="section" id="projects" aria-labelledby="projects-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">01 / SELECTED PROJECTS</p>
-        <h2 class="section-title" id="projects-title">Things built<br />below the surface.</h2>
-      </div>
-      <p class="section-intro">Three ongoing explorations in infrastructure, native experiences, and human-sized automation. Private work is described only at a high level.</p>
-    </div>
-    <div class="projects-grid">
-      {projects.map((project) => <ProjectCard project={project} />)}
+      ))}
     </div>
   </section>
 
-  <section class="section constellation-section" aria-labelledby="interests-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">02 / INTEREST CONSTELLATION</p>
-        <h2 class="section-title" id="interests-title">Different lights,<br />one navigation.</h2>
-      </div>
-      <p class="section-intro">The same curiosity moves between protocols and places: how invisible structure shapes what people can feel and do.</p>
+  <section class="section split-section" aria-labelledby="theme-title">
+    <div>
+      <p class="section-kicker section-index">02 / DAY & NIGHT</p>
+      <h2 class="section-title" id="theme-title">落日橙是白天，<br />深海星空是夜晚。</h2>
     </div>
-    <InterestConstellation />
+    <div class="theme-panel">
+      <div class="theme-swatch theme-swatch--day">
+        <span>DAY</span>
+        <strong>落日橙</strong>
+        <p>温暖、明亮、适合阅读和白天浏览。</p>
+      </div>
+      <div class="theme-swatch theme-swatch--night">
+        <span>NIGHT</span>
+        <strong>深海星空</strong>
+        <p>安静、发光、适合夜里继续 vibecoding。</p>
+      </div>
+    </div>
   </section>
 
-  <section class="section" id="atlas" aria-labelledby="atlas-section-title">
+  <section class="section" aria-labelledby="route-title">
     <div class="section-head">
       <div>
-        <p class="section-kicker section-index">03 / WHERE I'VE BEEN</p>
-        <h2 class="section-title" id="atlas-section-title">A personal atlas<br />without coordinates.</h2>
+        <p class="section-kicker section-index">03 / ROUTE</p>
+        <h2 class="section-title" id="route-title">从代码，<br />游向更远的地方。</h2>
       </div>
-      <p class="section-intro">Not a live map and not a travel log. Only broad impressions — coastlines, old streets, rail windows, and the ways a horizon changes a question.</p>
+      <p class="section-intro">这个博客不是单一技术简历，而是把工程、照片、文章、旅行和音乐放到同一个个人宇宙里。</p>
     </div>
-    <AtlasMap />
-  </section>
-
-  <section class="section" aria-labelledby="journey-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">04 / SYSTEMS × JOURNEY</p>
-        <h2 class="section-title" id="journey-title">A timeline of<br />signals and distance.</h2>
-      </div>
-      <p class="section-intro">A non-literal route through the ideas that connect technical practice with a wider view of the world.</p>
-    </div>
-    <JourneyTimeline />
-  </section>
-
-  <section class="section" aria-labelledby="notes-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">05 / NOTES FROM THE DEEP</p>
-        <h2 class="section-title" id="notes-title">Old signals,<br />kept readable.</h2>
-      </div>
-      <p class="section-intro">Two early technical notes, preserved as historical archives. Their original wording remains intact, including errors and outdated advice.</p>
-    </div>
-    <div class="notes-preview">
-      <a class="note-row" href="/notes/git-commands/">
-        <span class="note-meta">2020.01.24 / ARCHIVE</span>
-        <div>
-          <h3>Git 的一些常用命令</h3>
-          <p>关于仓库、分支、rebase 与撤销操作的早期笔记。</p>
-        </div>
-        <Icon name="arrow" size={21} />
-      </a>
-      <a class="note-row" href="/notes/qr-code/">
-        <span class="note-meta">2019.01.15 / ARCHIVE</span>
-        <div>
-          <h3>深度探索二维码及其应用</h3>
-          <p>从编码、纠错到艺术二维码的一次长篇探索。</p>
-        </div>
-        <Icon name="arrow" size={21} />
-      </a>
-    </div>
+    <ol class="journey-timeline">
+      {timeline.map((item) => (
+        <li>
+          <span class="timeline-marker">{item.mark}</span>
+          <div class="timeline-copy">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
   </section>
 </BaseLayout>

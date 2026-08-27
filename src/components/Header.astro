@@ -1,25 +1,50 @@
 ---
 import Icon from './Icon.astro';
+import { featuredDomains } from '../data/site';
 
 const pathname = Astro.url.pathname;
 const home = pathname === '/';
+const currentDomain = featuredDomains.find((domain) => pathname.startsWith(domain.href));
 ---
 
 <header class:list={['site-header', { 'site-header--solid': !home }]}>
-  <a class="brand" href="/" aria-label="Yun Lambert — home">
-    <span class="brand-mark" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </span>
-    <span>YUN / LAMBERT</span>
+  <a class="brand" href="/" aria-label="小云朵想养鲸鱼の博客 — home">
+    <span class="brand-mark" aria-hidden="true">🐋</span>
+    <span>小云朵想养鲸鱼</span>
   </a>
 
   <nav aria-label="Primary navigation">
-    <a href={home ? '#projects' : '/#projects'}>Projects</a>
-    <a href={home ? '#atlas' : '/#atlas'}>Atlas</a>
-    <a href="/notes/" aria-current={pathname.startsWith('/notes') ? 'page' : undefined}>Notes</a>
+    {featuredDomains.map((domain) => (
+      <a href={domain.href} aria-current={currentDomain?.key === domain.key ? 'page' : undefined}>{domain.label}</a>
+    ))}
     <a class="nav-github" href="https://github.com/YunLambert" rel="me noreferrer" target="_blank">
       <Icon name="github" size={18} />
       <span>GitHub</span>
     </a>
   </nav>
+
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle sunset day and starry night theme" aria-pressed="false">
+    <span class="theme-toggle__sun" aria-hidden="true">☀︎</span>
+    <span class="theme-toggle__moon" aria-hidden="true">☾</span>
+  </button>
 </header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+
+  const applyLabel = () => {
+    const theme = document.documentElement.dataset.theme === 'day' ? 'day' : 'night';
+    button?.setAttribute('aria-pressed', String(theme === 'day'));
+    button?.setAttribute('title', theme === 'day' ? '切换到深海星空夜间模式' : '切换到落日橙日间模式');
+  };
+
+  button?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'day' ? 'night' : 'day';
+    document.documentElement.dataset.theme = next;
+    document.documentElement.style.colorScheme = next === 'day' ? 'light' : 'dark';
+    localStorage.setItem('yun-theme', next);
+    applyLabel();
+  });
+
+  applyLabel();
+</script>

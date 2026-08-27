@@ -1,20 +1,22 @@
-# YunLambert.github.io · V2
+# 欢迎光临 小云朵想养鲸鱼の博客
 
-An Astro static personal homepage prototype built around **deep sea × starlight × technical exploration**.
+Astro static personal homepage for `YunLambert.github.io`, rebuilt around a more personal blog identity:
 
-> 写系统，也走世界。 / Building systems, collecting horizons.
+> 欢迎光临 小云朵想养鲸鱼の博客
 
 ## What is included
 
-- Lightweight native Canvas star/network field with pointer, touch, and reduced-motion support
-- Selected projects, interest constellation, abstract personal atlas, mixed systems/journey timeline
+- Home hero with interest tags: coding, hiking, designing, photograph, vibecoding, music, travel, whales, sunset, starlight
+- Five top-level theme pages: `/code/`, `/photograph/`, `/article/`, `/travel/`, `/music/`
+- Day/night theme toggle:
+  - Day: 落日橙
+  - Night: 深海星空
+- Lightweight native Canvas star/network field with pointer and reduced-motion support
 - Notes index and two preserved historical articles
 - Compatibility redirects for the old Jekyll `.html` URLs
 - Responsive design for desktop and 390 px mobile, semantic HTML, keyboard focus, 44 px targets
 - Local SVG icons, favicon, manifest, SEO/Open Graph metadata, RSS, sitemap, and 404 page
 - GitHub Pages deployment workflow
-
-The atlas is intentionally abstract. Its labels and normalized coordinates live in `src/data/site.ts`; do not add precise locations or future live itinerary data.
 
 ## Local development
 
@@ -42,6 +44,7 @@ The static output is written to `dist/`.
 - One 28 MB archived QR GIF is represented by a local first-frame WebP to keep the static page lightweight; the untouched Markdown backup still records its original URL.
 - The Git article carries a prominent warning because commands can be outdated, incorrect, or destructive.
 - MiniPlayer and BotsWorkflow are described only at a high level and expose no repository or source links.
+- Travel content stays abstract/coarse and does not expose precise locations, future itinerary, addresses, or private details.
 - No analytics, external fonts, runtime CDN, React, Three.js, D3, jQuery, Chart, Mermaid, or MathJax are used.
 
 ## Deployment

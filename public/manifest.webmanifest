@@ -1,10 +1,10 @@
 {
-  "name": "Yun Lambert — Systems & Horizons",
-  "short_name": "Yun Lambert",
-  "description": "Building systems, collecting horizons.",
+  "name": "欢迎光临 小云朵想养鲸鱼の博客",
+  "short_name": "小云朵想养鲸鱼",
+  "description": "coding、hiking、designing、photograph、vibecoding、music、travel，以及深海星空。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#020910",
+  "background_color": "#020912",
   "theme_color": "#041322",
   "icons": [
     { "src": "/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
