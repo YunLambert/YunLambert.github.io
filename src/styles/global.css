@@ -543,6 +543,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .domain-hero--photograph { background: radial-gradient(circle at 72% 32%, color-mix(in srgb, var(--warm) 24%, transparent), transparent 24rem), linear-gradient(180deg, var(--bg-2), var(--bg)); }
 .domain-hero--travel { background: radial-gradient(circle at 80% 40%, color-mix(in srgb, #74d8b9 20%, transparent), transparent 24rem), linear-gradient(180deg, var(--bg-2), var(--bg)); }
 .domain-hero--music { background: radial-gradient(circle at 75% 36%, color-mix(in srgb, #bd8cff 22%, transparent), transparent 24rem), linear-gradient(180deg, var(--bg-2), var(--bg)); }
+.empty-gallery {
+  width: var(--page);
+  min-height: clamp(320px, 48vh, 680px);
+  margin: 0 auto;
+}
 
 .site-footer {
   display: grid;

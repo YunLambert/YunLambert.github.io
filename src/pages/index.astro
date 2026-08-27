@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Starfield from '../components/Starfield.astro';
 import Icon from '../components/Icon.astro';
-import { featuredDomains, interestTags, timeline } from '../data/site';
+import { featuredDomains, interestTags } from '../data/site';
 ---
 
 <BaseLayout>
@@ -26,65 +26,5 @@ import { featuredDomains, interestTags, timeline } from '../data/site';
         ))}
       </div>
     </div>
-  </section>
-
-  <section class="section compact-section" aria-labelledby="domains-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">01 / THEME PAGES</p>
-        <h2 class="section-title" id="domains-title">五个入口，<br />各有一片海。</h2>
-      </div>
-      <p class="section-intro">主页不再做长横向叙事，直接给领域按钮。每个按钮进入对应主题页，后续内容按主题继续生长。</p>
-    </div>
-    <div class="domain-grid">
-      {featuredDomains.map((domain) => (
-        <a class="domain-card" href={domain.href}>
-          <p class="card-eyebrow">{domain.eyebrow}</p>
-          <h3>{domain.title}</h3>
-          <p>{domain.intro}</p>
-          <span>{domain.label} <Icon name="arrow" size={17} /></span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split-section" aria-labelledby="theme-title">
-    <div>
-      <p class="section-kicker section-index">02 / DAY & NIGHT</p>
-      <h2 class="section-title" id="theme-title">落日橙是白天，<br />深海星空是夜晚。</h2>
-    </div>
-    <div class="theme-panel">
-      <div class="theme-swatch theme-swatch--day">
-        <span>DAY</span>
-        <strong>落日橙</strong>
-        <p>温暖、明亮、适合阅读和白天浏览。</p>
-      </div>
-      <div class="theme-swatch theme-swatch--night">
-        <span>NIGHT</span>
-        <strong>深海星空</strong>
-        <p>安静、发光、适合夜里继续 vibecoding。</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="route-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">03 / ROUTE</p>
-        <h2 class="section-title" id="route-title">从代码，<br />游向更远的地方。</h2>
-      </div>
-      <p class="section-intro">这个博客不是单一技术简历，而是把工程、照片、文章、旅行和音乐放到同一个个人宇宙里。</p>
-    </div>
-    <ol class="journey-timeline">
-      {timeline.map((item) => (
-        <li>
-          <span class="timeline-marker">{item.mark}</span>
-          <div class="timeline-copy">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
   </section>
 </BaseLayout>

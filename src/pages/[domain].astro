@@ -13,6 +13,7 @@ export function getStaticPaths() {
 
 const { domain, slug } = Astro.props;
 const title = `${domain.title} — ${site.title}`;
+const isArticle = slug === 'article';
 ---
 
 <BaseLayout title={title} description={domain.intro}>
@@ -21,7 +22,7 @@ const title = `${domain.title} — ${site.title}`;
     <div class="domain-hero__inner">
       <p class="eyebrow">{domain.eyebrow}</p>
       <h1 id="domain-title">{domain.title}</h1>
-      <p>{domain.intro}</p>
+      {isArticle && <p>{domain.intro}</p>}
       <a class="button" href="/">
         <Icon name="arrow" size={18} />
         回到主题入口
@@ -29,31 +30,35 @@ const title = `${domain.title} — ${site.title}`;
     </div>
   </section>
 
-  <section class="section compact-section" aria-labelledby="domain-cards-title">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker section-index">{domain.label.toUpperCase()} / PAGE</p>
-        <h2 class="section-title" id="domain-cards-title">这个领域下，<br />先放这些。</h2>
+  {isArticle ? (
+    <section class="section compact-section" aria-labelledby="domain-cards-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker section-index">ARTICLE / ARCHIVE</p>
+          <h2 class="section-title" id="domain-cards-title">文章归档</h2>
+        </div>
+        <p class="section-intro">{domain.note}</p>
       </div>
-      <p class="section-intro">{domain.note}</p>
-    </div>
-    <div class="topic-grid">
-      {domain.cards.map((card) => (
-        'href' in card ? (
-          <a class="topic-card" href={card.href}>
-            <p class="card-eyebrow">{card.meta}</p>
-            <h3>{card.title}</h3>
-            <p>{card.text}</p>
-            <span>Open <Icon name="arrow" size={17} /></span>
-          </a>
-        ) : (
-          <article class="topic-card">
-            <p class="card-eyebrow">{card.meta}</p>
-            <h3>{card.title}</h3>
-            <p>{card.text}</p>
-          </article>
-        )
-      ))}
-    </div>
-  </section>
+      <div class="topic-grid">
+        {domain.cards.map((card) => (
+          'href' in card ? (
+            <a class="topic-card" href={card.href}>
+              <p class="card-eyebrow">{card.meta}</p>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <span>Open <Icon name="arrow" size={17} /></span>
+            </a>
+          ) : (
+            <article class="topic-card">
+              <p class="card-eyebrow">{card.meta}</p>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          )
+        ))}
+      </div>
+    </section>
+  ) : (
+    <section class="empty-gallery" aria-label={`${domain.label} gallery`}></section>
+  )}
 </BaseLayout>
